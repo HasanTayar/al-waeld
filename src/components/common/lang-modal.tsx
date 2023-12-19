@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setLanguage } from '@/store/userSlice';
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setLanguage } from "@/store/userSlice";
 import {
   Dialog,
   DialogContent,
@@ -8,11 +8,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Button } from '../ui/button';
-import { useUserLanguage } from '@/hooks/use-userlang';
-import { useTranslationsForPage } from '@/lib/query/hooks';
-import Loader from './loader';
+} from "@/components/ui/dialog";
+import { Button } from "../ui/button";
+import { useUserLanguage } from "@/hooks/use-userlang";
+import { useTranslationsForPage } from "@/lib/query/hooks";
+import Loader from "./loader";
+import { CheckCircle2Icon } from "lucide-react";
 
 const LangModal = () => {
   const dispatch = useDispatch();
@@ -51,29 +52,52 @@ const LangModal = () => {
   }
 
   return (
-    <div dir="rtl" className="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
-      <Dialog open={isOpen}>
-        {isLoadingTranslations ? <Loader /> : (
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>{translations?.welcome_message}</DialogTitle>
-              <DialogDescription>{translations?.dialog_description}</DialogDescription>
-            </DialogHeader>
-            <DialogFooter className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-x-2 sm:space-y-0">
-              <Button type="button" variant='ghost' onClick={() => handleLanguageChange("ar")} className="w-full sm:w-auto">
-                العربية
-              </Button>
-              <Button type="button" variant='ghost' onClick={() => handleLanguageChange("he")} className="w-full sm:w-auto">
-                עברית
-              </Button>
-              <Button type="button" disabled={isLoadingTranslations} onClick={handleSubmit} className="w-full sm:w-auto">
-                {translations?.dialog_submit}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        )}
-      </Dialog>
-    </div>
+    <>
+      {isLoadingTranslations ? (
+        <Loader />
+      ) : (
+        <div dir="rtl" className="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
+          <Dialog open={isOpen}>
+            <DialogContent className="sm:max-w-[425px] ">
+              <DialogHeader>
+                <DialogTitle>{translations?.welcome_message}</DialogTitle>
+                <DialogDescription>
+                  {translations?.dialog_description}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="flex items-center justify-center">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={() => handleLanguageChange("ar")}
+                  className="w-full sm:w-auto"
+                >
+                  العربية
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={() => handleLanguageChange("he")}
+                  className="w-full sm:w-auto"
+                >
+                  עברית
+                </Button>
+              </div>
+              <DialogFooter className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-x-2 sm:space-y-0">
+                <Button
+                  type="button"
+                  disabled={isLoadingTranslations}
+                  onClick={handleSubmit}
+                  className="w-full sm:w-auto"
+                >
+                 {translations?.dialog_submit} <CheckCircle2Icon size={30} className="pl-2" />
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
+      )}
+    </>
   );
 };
 
