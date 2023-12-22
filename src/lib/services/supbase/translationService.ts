@@ -1,8 +1,9 @@
+// In your translations fetching function file
+import { decodeHtmlEntities } from '../html-entity-decoder';
 import { TranslationForPageProps, Translations } from '@/constants';
-import { supabase } from '@/lib/services/supbase';
+import { supabase } from '.';
 
-export async function getTranslationsForPage({ pageName, langCode }: TranslationForPageProps) {
-  // Fetch the page_id based on the page name.
+export async function getTranslationsForPage({ pageName, langCode }: TranslationForPageProps): Promise<Translations> {
   const { data: pageData, error: pageError } = await supabase
     .from('pages')
     .select('page_id')
@@ -12,7 +13,6 @@ export async function getTranslationsForPage({ pageName, langCode }: Translation
   if (pageError) throw new Error(pageError.message);
   if (!pageData) throw new Error(`Page not found: ${pageName}`);
 
-  // Fetch the translations for the retrieved page_id.
   const { data: translationsData, error: translationsError } = await supabase
     .from('translations')
     .select('translations')
@@ -22,9 +22,9 @@ export async function getTranslationsForPage({ pageName, langCode }: Translation
   if (translationsError) throw new Error(translationsError.message);
   if (!translationsData) throw new Error(`Translations not found for page: ${pageName}`);
 
-  // Extract the translations for the specified language.
   const translations = Object.keys(translationsData.translations).reduce((acc, key) => {
-    acc[key] = translationsData.translations[key][langCode];
+    const translatedText = translationsData.translations[key][langCode];
+    acc[key] = translatedText ? decodeHtmlEntities(translatedText) : '';
     return acc;
   }, {} as Translations);
 

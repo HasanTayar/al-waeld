@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { useUserLanguage } from "@/hooks/use-userlang";
-import { useTranslationsForPage } from "@/lib/query/hooks";
+import { useTranslationsForPage } from "@/lib/query/hooks-query";
 import Loader from "./common/loader";
 import { CheckCircle2Icon } from "lucide-react";
 

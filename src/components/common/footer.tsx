@@ -1,5 +1,5 @@
 import { Facebook, Instagram, MailIcon, MapPinIcon, MessageCircle, PhoneCall } from "lucide-react";
-import { useGetContactList, useTranslationsForPage } from "@/lib/query/hooks";
+import { useGetContactList, useTranslationsForPage } from "@/lib/query/hooks-query";
 import { useUserLanguage } from "@/hooks/use-userlang";
 import Loader from "./loader";
 import logo from "/assets/headLogo.png";

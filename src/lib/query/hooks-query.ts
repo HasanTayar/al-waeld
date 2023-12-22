@@ -9,12 +9,8 @@ export const useTranslationsForPage = ({ pageName , langCode }: TranslationForPa
     queryFn: () => getTranslationsForPage({ pageName, langCode }),
   });
 };
-export const useGetGlobals = ({ pageName , langCode }: TranslationForPageProps) => {
-  return useQuery({
-    queryKey: [QUERY_KEYS.translation, pageName, langCode],
-    queryFn: () => getTranslationsForPage({ pageName, langCode }),
-  });
-};
+
+
 export const useGetContactList = () =>{
   return useQuery({
     queryKey:[QUERY_KEYS.contact],
