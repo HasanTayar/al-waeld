@@ -9,10 +9,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 import { useUserLanguage } from "@/hooks/use-userlang";
 import { useTranslationsForPage } from "@/lib/query/hooks";
-import Loader from "./loader";
+import Loader from "./common/loader";
 import { CheckCircle2Icon } from "lucide-react";
 
 const LangModal = () => {
@@ -29,7 +29,11 @@ const LangModal = () => {
     pageName: "home_page",
     langCode: selectedLangCode, // Use selectedLangCode to load translations
   });
-
+  const {data: globalTranslations , isLoading:isLoadingGlobal , error:globalErorr} = useTranslationsForPage({
+    pageName:'global',
+    langCode:selectedLangCode
+  }
+  )
   useEffect(() => {
     // Update the language state when the component mounts
     setSelectedLangCode(currentLangCode);
@@ -46,14 +50,18 @@ const LangModal = () => {
     setIsOpen(false); // Close the modal
   };
 
-  if (translationsError) {
+  if (translationsError || globalErorr) {
     console.log(translationsError);
     // You might want to handle this error more gracefully in a production environment
   }
+  useEffect(()=>{
+    document.title = globalTranslations?.title || 'אלוליד'
+    document.dir = 'rtl'
+  },[globalTranslations, selectedLangCode])
 
   return (
     <>
-      {isLoadingTranslations ? (
+      {isLoadingTranslations ||isLoadingGlobal  ? (
         <Loader />
       ) : (
         <div dir="rtl" className="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
