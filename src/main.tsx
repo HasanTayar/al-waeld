@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
+import '@/styles/index.css'
 import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@/lib/query/queryClient';
 import { store } from './store/store.ts';
