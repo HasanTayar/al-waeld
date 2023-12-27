@@ -9,3 +9,8 @@ export type langModal = {
   submit?: string;
   isFirstVisit?: boolean;
 };
+export type WelcomeSectionProps = {
+  title?:string,
+  description?:string,
+  readAboutUs?:string,
+}

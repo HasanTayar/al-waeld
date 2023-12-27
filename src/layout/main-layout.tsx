@@ -8,7 +8,7 @@ const MainLayout = ({ children }:{children?:React.ReactNode}) => {
     <>
       <Header />
       <LangModal/>
-      <main className='h-[1000px]'>{children}</main>
+      <main className='bg-[#F9F6EE]'>{children}</main>
       <Footer/>
 
     </>
