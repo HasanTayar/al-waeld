@@ -77,7 +77,7 @@ export const WelcomeSection = ({
           </motion.h1>
           <motion.p
             variants={fadeInOut}
-            className="text-base sm:text-lg md:text-xl"
+            className="text-base sm:text-lg md:text-xl text-right"
           >
             {description}
           </motion.p>

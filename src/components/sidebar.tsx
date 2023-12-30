@@ -14,9 +14,7 @@ const Sidebar = () => {
     pageName: "global",
     langCode: currentLangCode,
   });
-//   if(isLoadingGlobal){
-//     return <Loader/>
-//   }
+
   if(globalErorr && !isLoadingGlobal){
     console.log(globalErorr)
   }

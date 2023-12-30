@@ -27,50 +27,55 @@ const LangModal = () => {
     error: translationsError,
   } = useTranslationsForPage({
     pageName: "home_page",
-    langCode: selectedLangCode, // Use selectedLangCode to load translations
+    langCode: selectedLangCode,
   });
-  const {data: globalTranslations , isLoading:isLoadingGlobal , error:globalErorr} = useTranslationsForPage({
-    pageName:'global',
-    langCode:selectedLangCode
-  }
-  )
+  const {
+    data: globalTranslations,
+    isLoading: isLoadingGlobal,
+    error: globalErorr,
+  } = useTranslationsForPage({
+    pageName: "global",
+    langCode: selectedLangCode,
+  });
   useEffect(() => {
-    // Update the language state when the component mounts
     setSelectedLangCode(currentLangCode);
   }, [currentLangCode]);
 
   const handleLanguageChange = (newLangCode: string) => {
-    setSelectedLangCode(newLangCode); // Temporarily update the language
+    setSelectedLangCode(newLangCode);
   };
 
   const handleSubmit = () => {
     if (selectedLangCode) {
-      dispatch(setLanguage(selectedLangCode)); // Permanently update the language
+      dispatch(setLanguage(selectedLangCode));
     }
-    setIsOpen(false); // Close the modal
+    setIsOpen(false);
   };
 
   if (translationsError || globalErorr) {
     console.log(translationsError);
-    // You might want to handle this error more gracefully in a production environment
   }
-  useEffect(()=>{
-    document.title = globalTranslations?.title || 'אלוליד'
-    document.dir = 'rtl'
-  },[globalTranslations, selectedLangCode])
+  useEffect(() => {
+    document.title = globalTranslations?.title || "אלוליד";
+    document.dir = "rtl";
+  }, [globalTranslations, selectedLangCode]);
 
   return (
     <>
-      {isLoadingTranslations ||isLoadingGlobal  ? (
+      {isLoadingTranslations || isLoadingGlobal ? (
         <Loader />
       ) : (
         <div dir="rtl" className="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl">
           <Dialog open={isOpen}>
-            <DialogContent className="sm:max-w-[425px] ">
+            <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
-                <DialogTitle>{translations?.welcome_message}</DialogTitle>
+                <DialogTitle>
+                  {translations?.sections?.welcome_section?.title ||
+                    "Default Title"}
+                </DialogTitle>
                 <DialogDescription>
-                  {translations?.dialog_description}
+                  {translations?.sections?.header?.dialog_description ||
+                    "Default Description"}
                 </DialogDescription>
               </DialogHeader>
               <div className="flex items-center justify-center">
@@ -98,7 +103,8 @@ const LangModal = () => {
                   onClick={handleSubmit}
                   className="w-full sm:w-auto"
                 >
-                 {translations?.dialog_submit} <CheckCircle2Icon size={30} className="pl-2" />
+                  {translations?.sections?.header?.dialog_submit || "Submit"}{" "}
+                  <CheckCircle2Icon size={30} className="pl-2" />
                 </Button>
               </DialogFooter>
             </DialogContent>

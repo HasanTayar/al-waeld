@@ -32,6 +32,9 @@ dependencies:
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
+  embla-carousel-react:
+    specifier: 8.0.0-rc17
+    version: 8.0.0-rc17(react@18.2.0)
   framer-motion:
     specifier: ^10.16.16
     version: 10.16.16(react-dom@18.2.0)(react@18.2.0)
@@ -50,12 +53,18 @@ dependencies:
   react-redux:
     specifier: ^9.0.4
     version: 9.0.4(@types/react@18.2.45)(react@18.2.0)(redux@5.0.0)
+  react-resizable-panels:
+    specifier: ^1.0.5
+    version: 1.0.5(react-dom@18.2.0)(react@18.2.0)
   react-router-dom:
     specifier: ^6.21.0
     version: 6.21.0(react-dom@18.2.0)(react@18.2.0)
   scss:
     specifier: ^0.2.4
     version: 0.2.4
+  swiper:
+    specifier: ^11.0.5
+    version: 11.0.5
   tailwind-merge:
     specifier: ^2.1.0
     version: 2.1.0
@@ -1730,6 +1739,28 @@ packages:
     resolution: {integrity: sha512-/bKPPcgZVUziECqDc+0HkT87+0zhaWSZHNXqF8FLd2lQcptpmUFwoCSWjCdOng9Gdq+afKArPdEg/0ZW461Eng==}
     dev: true
 
+  /embla-carousel-react@8.0.0-rc17(react@18.2.0):
+    resolution: {integrity: sha512-x4aFprwFB+PQO9EsHHZsrDxARb0uYNBYn9mr5oDFdBdPez4M8G1r5yidWbUcT9pNUc8AQXC9sGzlfauBfBxVOw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0
+    dependencies:
+      embla-carousel: 8.0.0-rc17
+      embla-carousel-reactive-utils: 8.0.0-rc17(embla-carousel@8.0.0-rc17)
+      react: 18.2.0
+    dev: false
+
+  /embla-carousel-reactive-utils@8.0.0-rc17(embla-carousel@8.0.0-rc17):
+    resolution: {integrity: sha512-eluEOK/u5HdjYaTLC4bUG3iTCnyX7RsYix3il0aH4ZECOKa5fS+pVK2vrM17Mgw6C5Hyjcr3r3lfJtGerVzVsQ==}
+    peerDependencies:
+      embla-carousel: 8.0.0-rc17
+    dependencies:
+      embla-carousel: 8.0.0-rc17
+    dev: false
+
+  /embla-carousel@8.0.0-rc17:
+    resolution: {integrity: sha512-evF49b88VOitvqFtlvhvKVSu96Y8A+QSFdhok87Bfm8R7OYuk95FT+o8+M1GQLi/EhGDUlT193HTVAR0Wt2neQ==}
+    dev: false
+
   /esbuild@0.19.10:
     resolution: {integrity: sha512-S1Y27QGt/snkNYrRcswgRFqZjaTG5a5xM3EQo97uNBnH505pdzSNe/HLBq1v0RO7iK/ngdbhJB6mDAp0OK+iUA==}
     engines: {node: '>=12'}
@@ -2493,6 +2524,16 @@ packages:
       use-sidecar: 1.1.2(@types/react@18.2.45)(react@18.2.0)
     dev: false
 
+  /react-resizable-panels@1.0.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-OP0whNQCko+f4BgoptGaeIc7StBRyeMeJ+8r/7rXACBDf9W5EcMWuM32hfqPDMenS2HFy/eZVi/r8XqK+ZIEag==}
+    peerDependencies:
+      react: ^16.14.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.14.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /react-router-dom@6.21.0(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-1dUdVj3cwc1npzJaf23gulB562ESNvxf7E4x8upNJycqyUm5BRRZ6dd3LrlzhtLaMrwOCO8R0zoiYxdaJx4LlQ==}
     engines: {node: '>=14.0.0'}
@@ -2698,6 +2739,11 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /swiper@11.0.5:
+    resolution: {integrity: sha512-rhCwupqSyRnWrtNzWzemnBLMoyYuoDgGgspAm/8iBD3jCvAWycPLH4Z3TB0O5520DHLzMx94yUMH/B9Efpa48w==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /tailwind-merge@2.1.0:
     resolution: {integrity: sha512-l11VvI4nSwW7MtLSLYT4ldidDEUwQAMWuSHk7l4zcXZDgnCRa0V3OdCwFfM7DCzakVXMNRwAeje9maFFXT71dQ==}

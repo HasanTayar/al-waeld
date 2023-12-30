@@ -1,3 +1,3 @@
 export * from './supabaseClient'
-export * from './translationService'
-export * from './contactService'
+export * from './translation/translationService'
+export * from './contact/contactService'

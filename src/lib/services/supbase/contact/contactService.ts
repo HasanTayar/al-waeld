@@ -1,4 +1,4 @@
-import { supabase } from "./index";
+import { supabase } from "../index";
 
 export const fetchContactList = async () => {
     const { data, error } = await supabase.from('contact_list').select('*');

@@ -13,6 +13,7 @@ const Footer = () => {
     isLoading: isLoadingFooter,
     error: errorFooter,
   } = useTranslationsForPage({ pageName: "footer", langCode: currentLangCode });
+
   const {
     data: globalTranslation,
     isLoading: isLoadingGlobal,
@@ -24,6 +25,7 @@ const Footer = () => {
     error: errorContactList,
   } = useGetContactList();
 
+
   if (isLoadingFooter || isLoadingGlobal || isLoadingContactList) {
     return <Loader />;
   }
@@ -32,7 +34,6 @@ const Footer = () => {
     return <div>Error loading translations</div>;
   }
 
-  // Assuming there's only one contact in the contactList
   const contact = contactList && contactList[0];
 
   return (

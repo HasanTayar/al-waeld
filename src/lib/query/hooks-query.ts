@@ -6,7 +6,7 @@ import { fetchContactList } from '@/lib/services/supbase';
 export const useTranslationsForPage = ({ pageName, langCode }: TranslationForPageProps) => {
   return useQuery({
     queryKey: [pageName, langCode],
-    queryFn: () => getTranslationsForPage({ pageName, langCode }),
+    queryFn: () => getTranslationsForPage({ pageName, langCode })
   });
 };
 

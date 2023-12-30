@@ -1,16 +1,5 @@
-export type TranslationForPageProps = {
-  pageName: string;
-  langCode: string;
-};
+import { TranslationObject } from ".";
 
-export type langModal = {
-  title?: string;
-  description?: string;
-  submit?: string;
-  isFirstVisit?: boolean;
-};
-export type WelcomeSectionProps = {
-  title?:string,
-  description?:string,
-  readAboutUs?:string,
-}
+
+export type TranslationValue = string | TranslationObject | TranslationObject[];
+
