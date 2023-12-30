@@ -37,6 +37,13 @@ const LangModal = () => {
     setSelectedLangCode(currentLangCode);
   }, [currentLangCode]);
 
+  useEffect(() => {
+    if (globalTranslations?.title) {
+      document.title = globalTranslations.title as unknown as string ;
+      document.dir = 'rtl';
+    }
+  }, [globalTranslations?.title]);
+
   const handleLanguageChange = (newLangCode: 'ar' | 'he') => {
     setSelectedLangCode(newLangCode);
   };
@@ -56,12 +63,9 @@ const LangModal = () => {
   if (isLoadingTranslations || isLoadingGlobal) {
     return <Loader />;
   }
-  useEffect(()=>{
-    document.title = globalTranslations?.title as unknown as string
-    document.dir = 'rtl' 
-  })
+
   return (
-    <Dialog open={isOpen}>
+        <Dialog open={isOpen}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{translations?.sections?.welcome_section?.title || "Default Title"}</DialogTitle>
