@@ -2,18 +2,15 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { Button } from "./ui/button";
 import { HomeIcon, Menu } from "lucide-react";
 import { useTranslationsForPage } from "@/lib/query/hooks-query";
-import { useUserLanguage } from "@/hooks/use-userlang";
 
 const Sidebar = () => {
-  const { language: currentLangCode } = useUserLanguage();
   const {
     data: globalTranslations,
     isLoading: isLoadingGlobal,
     error: globalErorr,
-  } = useTranslationsForPage({
-    pageName: "global",
-    langCode: currentLangCode,
-  });
+  } = useTranslationsForPage(
+ "global",
+);
 
   if(globalErorr && !isLoadingGlobal){
     console.log(globalErorr)

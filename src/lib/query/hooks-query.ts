@@ -1,15 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import { TranslationForPageProps, QUERY_KEYS,  } from '@/constants';
+import {  QUERY_KEYS,  } from '@/constants';
 import { getTranslationsForPage } from '@/lib/services/supbase'; 
 import { fetchContactList } from '@/lib/services/supbase';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
-export const useTranslationsForPage = ({ pageName, langCode }: TranslationForPageProps) => {
+export const useTranslationsForPage = (pageName: string) => {
+  const language = useSelector((state: RootState) => state.user.language);
+
   return useQuery({
-    queryKey: [pageName, langCode],
-    queryFn: () => getTranslationsForPage({ pageName, langCode })
+    queryKey: [QUERY_KEYS.translations, pageName, language],
+    queryFn: () => getTranslationsForPage(pageName)
   });
 };
-
 
 export const useGetContactList = () =>{
   return useQuery({

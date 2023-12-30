@@ -16,7 +16,7 @@ export const LanguageSwitcher = () => {
     setSelectedLangCode(currentLangCode);
   }, [currentLangCode]);
 
-  const handleLanguageChange = (newLangCode: string) => {
+  const handleLanguageChange = (newLangCode: 'ar' | 'he') => {
     setSelectedLangCode(newLangCode);
     dispatch(setLanguage(newLangCode)); // Dispatch the setLanguage action with the new language code
   };

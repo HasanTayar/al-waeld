@@ -1,19 +1,17 @@
 import Loader from "@/components/common/loader";
 import { FounderSection } from "@/components/home/founder-section";
 import { WelcomeSection } from "@/components/home/welcome-section";
-import { useUserLanguage } from "@/hooks/use-userlang";
+
 import { useTranslationsForPage } from "@/lib/query/hooks-query";
 import React from "react";
 const Home = () => {
-  const { language } = useUserLanguage();
   const {
     data: homeTranslation,
     isLoading: isLodatinTranslation,
     error: homeErorr,
-  } = useTranslationsForPage({
-    langCode: language,
-    pageName: "home_page",
-  });
+  } = useTranslationsForPage(
+    "home_page",
+  );
 
   if (isLodatinTranslation) {
     return <Loader />;
@@ -22,7 +20,7 @@ const Home = () => {
   if (homeErorr) {
     console.log(homeErorr);
   }
-  console.log(homeTranslation?.sections?.founders_section)
+
   return (
     <React.Fragment>
       <WelcomeSection

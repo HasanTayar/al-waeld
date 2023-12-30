@@ -11,13 +11,15 @@ const Header = () => {
   return (
     <header className="flex justify-between items-center sticky top-0 bg-slate-300 p-4 shadow-md z-10">
       <div className="flex items-center">
-        <Sidebar />
+
+        
+      <Sidebar/>
       </div>
       <div className="flex-grow flex justify-center items-center h-16 md:h-20">
         <img src={logo} alt="logo" className="max-h-full" />
       </div>
       <div className="flex items-center">
-        <LanguageSwitcher />
+      <LanguageSwitcher />
       </div>
     </header>
   );

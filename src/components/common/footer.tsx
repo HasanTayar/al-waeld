@@ -1,30 +1,18 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 import { Facebook, Instagram, MailIcon, MapPinIcon, MessageCircle, PhoneCall } from "lucide-react";
 import { useGetContactList, useTranslationsForPage } from "@/lib/query/hooks-query";
-import { useUserLanguage } from "@/hooks/use-userlang";
 import Loader from "./loader";
 import logo from "/assets/headLogo.png";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { getTranslationString } from '@/lib/utils';
 
 const Footer = () => {
-  const { language: currentLangCode } = useUserLanguage();
-  const {
-    data: footerTranslation,
-    isLoading: isLoadingFooter,
-    error: errorFooter,
-  } = useTranslationsForPage({ pageName: "footer", langCode: currentLangCode });
-
-  const {
-    data: globalTranslation,
-    isLoading: isLoadingGlobal,
-    error: errorGlobal,
-  } = useTranslationsForPage({ pageName: "global", langCode: currentLangCode });
-  const {
-    data: contactList,
-    isLoading: isLoadingContactList,
-    error: errorContactList,
-  } = useGetContactList();
-
+  const language = useSelector((state: RootState) => state.user.language);
+  const { data: footerTranslation, isLoading: isLoadingFooter, error: errorFooter } = useTranslationsForPage("footer");
+  const { data: globalTranslation, isLoading: isLoadingGlobal, error: errorGlobal } = useTranslationsForPage("global");
+  const { data: contactList, isLoading: isLoadingContactList, error: errorContactList } = useGetContactList();
 
   if (isLoadingFooter || isLoadingGlobal || isLoadingContactList) {
     return <Loader />;
@@ -36,8 +24,10 @@ const Footer = () => {
 
   const contact = contactList && contactList[0];
 
+  
+  
   return (
-    <footer className="bg-slate-300 text-gray-700">
+    <footer className="bg-slate-300 text-gray-700" dir='rtl'>
       <div className="container mx-auto px-4 py-16 flex flex-col items-center space-y-8 rtl lg:flex-row lg:space-x-8 lg:space-y-0">
         
         {/* Logo Section */}

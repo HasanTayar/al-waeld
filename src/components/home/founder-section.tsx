@@ -10,18 +10,14 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { FoundersSectionProps } from "@/constants";
-import { useUserLanguage } from "@/hooks/use-userlang";
-import Loader from "../common/loader";
+import {  FoundersSectionProps } from "@/constants";
+
 
 
 export const FounderSection = ({ title, founders }: FoundersSectionProps) => {
-  const { language } = useUserLanguage();
-  const [code, setCode] = useState('');
 
-  useEffect(() => {
-    setCode(language === 'ar' ? 'ar' : 'he');
-  }, [language]);
+
+
 
   // Set a consistent height for the card content and images
   const cardContentHeight = '150px'; // Adjust as needed
@@ -44,7 +40,7 @@ export const FounderSection = ({ title, founders }: FoundersSectionProps) => {
       >
         <div className="md:max-h-[500px] ">
 
-        {founders.map((founder, index) => (
+        {founders && founders.map((founder, index) => (
           <SwiperSlide key={index}>
             <Card className="flex flex-col items-center justify-center shadow-lg rounded-lg text-right">
 
@@ -62,7 +58,7 @@ export const FounderSection = ({ title, founders }: FoundersSectionProps) => {
                 </CardHeader>
                 <CardDescription>
                   {founder.duties.map((duty, dutyIndex) => (
-                    <p key={dutyIndex}>{duty[code]}</p>
+                    <p key={dutyIndex}>{duty}</p>
                   ))}
                 </CardDescription>
               </CardContent>

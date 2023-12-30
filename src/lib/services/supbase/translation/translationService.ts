@@ -1,45 +1,8 @@
-import { decodeHtmlEntities } from '../../html-entity-decoder';
-import { TranslationForPageProps, Translations, TranslationValue } from '@/constants';
-import { supabase } from '..';
+import { PageTranslations } from '@/constants';
+import { supabase } from '..'; // Update the path according to your project structure
+import { processTranslationValue } from './helper';
 
-function processTranslationValue(value: TranslationValue, langCode: string): string | Record<string, any> {
-  if (typeof value === 'string') {
-    return decodeHtmlEntities(value);
-  }
-
-  if (Array.isArray(value)) {
-    return value.map(item => processItem(item, langCode)); 
-  }
-
-  if (typeof value === 'object' && value !== null) {
-    if (langCode in value && typeof value[langCode] === 'string') {
-      return decodeHtmlEntities(value[langCode]);
-    } else {
-      const result: Record<string, any> = {};
-      Object.keys(value).forEach(key => {
-        result[key] = processTranslationValue(value[key], langCode);
-      });
-      return result;
-    }
-  }
-
-  return '';
-}
-
-function processItem(item: any, langCode: string): string | Record<string, any> {
-  if (typeof item === 'string') {
-    return decodeHtmlEntities(item);
-  } else if (typeof item === 'object' && item !== null) {
-    const processedItem: Record<string, any> = {};
-    Object.keys(item).forEach(key => {
-      processedItem[key] = processTranslationValue(item[key], langCode);
-    });
-    return processedItem;
-  }
-  return '';
-}
-
-export async function getTranslationsForPage({ pageName, langCode }: TranslationForPageProps): Promise<Translations> {
+export async function getTranslationsForPage(pageName: string): Promise<PageTranslations> {
   const { data: pageData, error: pageError } = await supabase
     .from('pages')
     .select('page_id')
@@ -58,10 +21,10 @@ export async function getTranslationsForPage({ pageName, langCode }: Translation
   if (translationsError) throw new Error(translationsError.message);
   if (!translationsData) throw new Error(`Translations not found for page: ${pageName}`);
 
-  const translations = Object.keys(translationsData.translations).reduce((acc, key) => {
-    acc[key] = processTranslationValue(translationsData.translations[key], langCode);
-    return acc;
-  }, {} as Translations);
+  const translations: PageTranslations = {};
+  Object.keys(translationsData.translations).forEach((key) => {
+    translations[key] = processTranslationValue(translationsData.translations[key]);
+  });
 
   return translations;
 }

@@ -1,4 +1,4 @@
 export const QUERY_KEYS = {
-    translation: 'translation',
+    translations: 'translations',
     contact:'contact'
 };
