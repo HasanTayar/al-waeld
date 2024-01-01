@@ -19,14 +19,14 @@ export interface PageTranslations {
 
 // Represents a founder, as previously defined
 export interface Founder {
-  name: TranslationItem;
-  duties: TranslationItem[];
-  imageUrl?: string;
+  name: any;
+  duties: any[];
+  imageUrl?: any;
 }
 
 export interface FoundersSectionProps {
-  title: TranslationItem;
-  founders: Founder[];
+  title: any;
+  founders: any;
 }
 
 export interface DataObject {
@@ -53,9 +53,9 @@ export interface LangModal {
 }
 
 export interface WelcomeSectionProps {
-  title: TranslationItem;
-  description: TranslationItem;
-  readAboutUs: TranslationItem;
+  title: any;
+  description: any;
+  readAboutUs: any;
 }
 
 // Define a type that can handle both string and TranslationItem

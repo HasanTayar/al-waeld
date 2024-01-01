@@ -17,7 +17,7 @@ export const WelcomeSection = ({
 
   const controls = useAnimation();
   const { ref, inView } = useInView({
-    triggerOnce: false,
+    triggerOnce: true,
     threshold: 0.5,
   });
 
@@ -88,7 +88,10 @@ export const WelcomeSection = ({
           <Button
             className="bg-slate-300 text-black rounded-lg font-bold py-2 px-4 flex items-center space-x-2 shadow-md hover:bg-slate-400 transition-colors duration-300"
           >
+            <a href="/about-us">
+
             <span>{readAboutUs}</span>
+            </a>
             <MoveLeft />
           </Button>
         </motion.div>

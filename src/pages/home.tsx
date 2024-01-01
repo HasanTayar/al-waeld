@@ -1,4 +1,5 @@
 import Loader from "@/components/common/loader";
+import DonateSection from "@/components/home/donate-section";
 import { FounderSection } from "@/components/home/founder-section";
 import { WelcomeSection } from "@/components/home/welcome-section";
 
@@ -20,15 +21,15 @@ const Home = () => {
   if (homeErorr) {
     console.log(homeErorr);
   }
-
   return (
     <React.Fragment>
       <WelcomeSection
-        title={homeTranslation?.sections?.welcome_section?.title}
-        description={homeTranslation?.sections?.welcome_section?.description}
-        readAboutUs={homeTranslation?.sections?.header?.read_about_us}
+        title={homeTranslation?.welcome_section?.title}
+        description={homeTranslation?.welcome_section?.description}
+        readAboutUs={homeTranslation?.header?.read_about_us}
       />
-      <FounderSection title={homeTranslation?.sections?.founders_section?.title} founders={homeTranslation?.sections?.founders_section?.description}/>
+      <FounderSection title={homeTranslation?.founders_section?.title} founders={homeTranslation?.founders_section?.description}/>
+      <DonateSection title={homeTranslation?.donation_section?.title} description={homeTranslation?.donation_section?.description} donate={homeTranslation?.donation_section?.donate}/>
     </React.Fragment>
   );
 };

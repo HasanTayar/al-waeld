@@ -1,16 +1,18 @@
+import React, { Suspense } from 'react';
 import Footer from '@/components/common/footer';
 import Header from '@/components/common/header';
-import LangModal from '@/components/lang-modal';
-import React from 'react';
+import Loader from '@/components/common/loader';
+const LangModal = React.lazy(() => import('@/components/lang-modal'));
 
 const MainLayout = ({ children }:{children?:React.ReactNode}) => {
   return (
     <>
       <Header />
-      <LangModal/>
+      <Suspense fallback={<Loader/>}>
+        <LangModal/>
+      </Suspense>
       <main className='bg-slate-300'>{children}</main>
       <Footer/>
-
     </>
   );
 };

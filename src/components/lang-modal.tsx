@@ -68,8 +68,8 @@ const LangModal = () => {
         <Dialog open={isOpen}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{translations?.sections?.welcome_section?.title || "Default Title"}</DialogTitle>
-          <DialogDescription>{translations?.sections?.header?.dialog_description || "Default Description"}</DialogDescription>
+          <DialogTitle>{translations?.welcome_section?.title}</DialogTitle>
+          <DialogDescription>{translations?.header?.dialog_description}</DialogDescription>
         </DialogHeader>
         <div className="flex items-center justify-center">
           <Button type="button" variant="ghost" onClick={() => handleLanguageChange("ar")} className="w-full sm:w-auto">
@@ -81,7 +81,7 @@ const LangModal = () => {
         </div>
         <DialogFooter className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-x-2 sm:space-y-0">
           <Button type="button" disabled={isLoadingTranslations} onClick={handleSubmit} className="w-full sm:w-auto">
-            {translations?.sections?.header?.dialog_submit || "Submit"} <CheckCircle2Icon size={30} className="pl-2" />
+            {translations?.header?.dialog_submit} <CheckCircle2Icon size={30} className="pl-2" />
           </Button>
         </DialogFooter>
       </DialogContent>
