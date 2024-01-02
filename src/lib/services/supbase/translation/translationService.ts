@@ -2,7 +2,7 @@ import { PageTranslations } from '@/constants';
 import { supabase } from '..'; // Update the path according to your project structure
 import { processTranslationValue } from './helper';
 
-export async function getTranslationsForPage(pageName: string): Promise<PageTranslations> {
+export async function getTranslationsForPage(pageName: string): Promise<any> {
   const { data: pageData, error: pageError } = await supabase
     .from('pages')
     .select('page_id')

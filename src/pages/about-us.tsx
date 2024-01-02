@@ -73,7 +73,7 @@ const AboutUs = () => {
           },
         }}
       >
-        {data?.about.slides.map((imageUrl, index) => (
+        {data?.about.slides.map((imageUrl: string | undefined, index: React.Key | null | undefined) => (
           <SwiperSlide key={index}>
             <img
               src={imageUrl}

@@ -1,15 +1,12 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import { Facebook, Instagram, MailIcon, MapPinIcon, MessageCircle, PhoneCall } from "lucide-react";
+
+import { Facebook, Instagram, MailIcon, MapPinIcon,  PhoneCall } from "lucide-react";
 import { useGetContactList, useTranslationsForPage } from "@/lib/query/hooks-query";
 import Loader from "./loader";
 import logo from "/assets/headLogo.png";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { getTranslationString } from '@/lib/utils';
 
 const Footer = () => {
-  const language = useSelector((state: RootState) => state.user.language);
   const { data: footerTranslation, isLoading: isLoadingFooter, error: errorFooter } = useTranslationsForPage("footer");
   const { data: globalTranslation, isLoading: isLoadingGlobal, error: errorGlobal } = useTranslationsForPage("global");
   const { data: contactList, isLoading: isLoadingContactList, error: errorContactList } = useGetContactList();
@@ -59,7 +56,7 @@ const Footer = () => {
         </div>
   
         {/* Contact Section */}
-        <div className="flex flex-col space-y-4 items-center lg:items-end lg:order-3">
+        <div className="flex flex-col space-y-4 items-center lg:items-end lg:order-4">
           <h2 className="text-2xl lg:text-3xl font-semibold">
             {footerTranslation?.contact}
           </h2>
@@ -77,7 +74,9 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:text-secondary transition-colors"
               >
-                <MessageCircle className="w-6 h-6 lg:w-8 lg:h-8" />
+                <div className="className='w-6 h-6 lg:w-8 lg:h-8" >
+              <img src="/assets/whatsapp.svg" alt="whatsapp"  />
+                </div>
               </a>
             )}
           </div>

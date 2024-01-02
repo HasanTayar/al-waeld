@@ -51,7 +51,7 @@ const DonateSection = ({ title, description, donate }:test) => {
 
       <motion.p 
         variants={fadeInOut}
-        className="sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-right lg:text-left my-4 lg:my-6 leading-normal lg:leading-loose"
+        className="sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-right  my-4 lg:my-6 leading-normal lg:leading-loose"
       >
         {description}
       </motion.p>
@@ -61,7 +61,7 @@ const DonateSection = ({ title, description, donate }:test) => {
         className="mt-4 flex justify-center"
       >
         <Button
-          className="bg-slate-300 text-black rounded-lg font-bold py-2 px-4 flex items-center space-x-2 shadow-md hover:bg-slate-400 transition-colors duration-300"
+          className=" text-white rounded-lg font-bold py-2 px-4 flex items-center space-x-2 shadow-md hover:bg-slate-400 transition-colors duration-300"
         >
           <span>{donate}</span>
           <Landmark />

@@ -7,7 +7,7 @@ import Sidebar from "../sidebar";
 const Header = () => {
   const { language } = useUserLanguage();
   const logo = language === "he" ? hebrewLogo : arabicLogo;
-
+  
   return (
     <header className="flex justify-between items-center sticky top-0 bg-slate-300 p-4 shadow-md z-10">
       <div className="flex items-center">
@@ -15,9 +15,11 @@ const Header = () => {
         
       <Sidebar/>
       </div>
-      <div className="flex-grow flex justify-center items-center h-16 md:h-20">
-        <img src={logo} alt="logo" className="max-h-full" />
-      </div>
+      <a className="flex-grow flex justify-center items-center h-16 md:h-20" href="/">
+       
+        <img src={logo} alt="logo" className="max-h-full"  />
+  
+      </a>
       <div className="flex items-center">
       <LanguageSwitcher />
       </div>

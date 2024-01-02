@@ -45,21 +45,21 @@ export const FounderSection = ({ title, founders }: FoundersSectionProps) => {
       ref={ref}
       initial="hidden"
       animate={controls}
-      className="bg-gradient-to-b from-slate-300 to-gray-200 p-4"
+      className="bg-gradient-to-b from-slate-300 to-gray-200 p-4 "
     >
       <h1 className="text-2xl md:text-4xl lg:text-5xl my-6 text-center font-bold">
         {title}
       </h1>
-      <motion.div
-        variants={fadeInOut}
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-      >
+      <div className="flex justify-center"> 
+  <motion.div
+    variants={fadeInOut}
+    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mx-auto"
+  >
+
         {founders &&
           founders.map((founder: { imageUrl: any; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; duties: (string | number | boolean | React.ReactPortal | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | MotionValue<number> | MotionValue<string> | null | undefined)[]; }, index: React.Key | null | undefined) => (
-            <Card
-              key={index}
-              className="flex flex-col items-center justify-center shadow-lg rounded-lg text-right"
-            >
+            <Card key={index} className="flex flex-col items-center justify-between shadow-lg rounded-lg text-right">
+
               <div className="relative w-full" style={{ height: imageHeight }}>
                 <img
                   src={founder.imageUrl || "https://via.placeholder.com/150"}
@@ -104,6 +104,8 @@ export const FounderSection = ({ title, founders }: FoundersSectionProps) => {
             </Card>
           ))}
       </motion.div>
+      </div>
+
     </motion.div>
   );
 };
