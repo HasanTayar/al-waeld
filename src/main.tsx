@@ -7,6 +7,8 @@ import { store } from './store/store.ts';
 import {Provider} from 'react-redux'
 import AppRoutes from './routes.tsx';
 const root = window.document.documentElement
+
+
 root.classList.add('light')
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
+import { useTranslationsForPage } from "@/lib/query/hooks-query";
+import Loader from "./loader";
 
 const NotFound = () => {
+  const {data, isLoading , error} = useTranslationsForPage('not_found')
+  if(isLoading){
+    return <Loader/>
+  } 
+  if(error){
+    console.log(error)
+  }
   return (
     <div className="lg:px-24 lg:py-24 md:py-20 md:px-44 px-4 py-24 items-center flex justify-center flex-col-reverse lg:flex-row md:gap-28 gap-16">
       <div className="xl:pt-24 w-full xl:w-1/2 relative pb-12 lg:pb-0">
@@ -9,14 +18,14 @@ const NotFound = () => {
           <div className="absolute">
             <div className="">
               <h1 className="my-2 text-gray-800 font-bold text-2xl">
-                אופס! לא נמצא ניתונים למה  שאתה מחפש
+                {data?.error?.title}
               </h1>
               <p className="my-2 text-gray-800">
-                מתנצלים על זה בבקשה תחזור לדף הבית
+                {data?.error?.sub_title}
               </p>
               <Link to="/">
                 <Button className="sm:w-full lg:w-auto my-2 border rounded md py-4 px-8 text-center bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">
-                  תקח אותי לשם!
+                  {data?.error?.button}
                 </Button>
               </Link>
             </div>

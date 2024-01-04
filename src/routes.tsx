@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './layout/main-layout';
 import Loader from './components/common/loader';
 import Courses from './pages/courses';
+import EmailTemplateEditor from './components/admin/email-editor';
 
 const Home = lazy(() => import('./pages/home'));
 
@@ -38,6 +39,16 @@ const AppRoutes = () => {
             <MainLayout>
               <Suspense fallback={<Loader/>}>
                 <AboutUs />
+              </Suspense>
+            </MainLayout>
+          }
+        />
+        <Route 
+          path='/test' 
+          element={
+            <MainLayout>
+              <Suspense fallback={<Loader/>}>
+                <EmailTemplateEditor />
               </Suspense>
             </MainLayout>
           }
