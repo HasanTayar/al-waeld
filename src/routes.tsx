@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './layout/main-layout';
 import Loader from './components/common/loader';
 import Courses from './pages/courses';
-import EmailTemplateEditor from './components/admin/email-editor';
+// import EmailTemplateEditor from './components/admin/email-editor';
 
 const Home = lazy(() => import('./pages/home'));
 
@@ -43,7 +43,7 @@ const AppRoutes = () => {
             </MainLayout>
           }
         />
-        <Route 
+        {/* <Route 
           path='/test' 
           element={
             <MainLayout>
@@ -52,7 +52,7 @@ const AppRoutes = () => {
               </Suspense>
             </MainLayout>
           }
-        />
+        /> */}
         <Route
         path='*'
         element={
