@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+
 interface AdminState {
   isAuthenticated: boolean;
-  userData: any; 
+  userData: any | null;
 }
 
+const userDataFromStorage = localStorage.getItem('admin');
 const initialState: AdminState = {
-  isAuthenticated: false,
-  userData: null,
+  isAuthenticated: Boolean(userDataFromStorage),
+  userData: userDataFromStorage ? JSON.parse(userDataFromStorage) : null,
 };
 
 export const adminSlice = createSlice({
@@ -26,8 +28,5 @@ export const adminSlice = createSlice({
 });
 
 export const { login, logout } = adminSlice.actions;
-
-export const selectIsAuthenticated = (state: { admin: AdminState }) => state.admin.isAuthenticated;
-export const selectUserData = (state: { admin: AdminState }) => state.admin.userData;
 
 export default adminSlice.reducer;

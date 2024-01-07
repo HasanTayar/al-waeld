@@ -25,8 +25,8 @@ const AuthPage = () => {
       return;
     }
 
-    if (data?.user) {
-      console.log('Login successful:', data.user);
+    if (data) {
+      console.log('Login successful:', data);
       navigate(`/admin-dashboard/?hashingcode=${import.meta.env.VITE_HASH}`)
     }
   };

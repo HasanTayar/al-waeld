@@ -1,25 +1,18 @@
 import React, { Suspense } from 'react';
-import { useLocation, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import Loader from '../common/loader';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-const getQueryParam = (param: string, search: string) => {
-  const queryParams = new URLSearchParams(search);
-  return queryParams.get(param);
-};
 
 const AdminRoute = ({ children }: { children?: React.ReactNode }) => {
-  const location = useLocation();
-  const hashingcode = getQueryParam('hashingcode', location.search);
   const isAuthenticated = useSelector((state: RootState) => state.admin.isAuthenticated);
-  console.log(isAuthenticated)
 
-  if(hashingcode !== import.meta.env.VITE_HASH){
-    return <Navigate to="*" replace/>
-  }else if (!isAuthenticated || hashingcode !== import.meta.env.VITE_HASH) {
-    return <Navigate to="/" replace />; 
+  // If not authenticated, redirect to the login page
+  if (!isAuthenticated) {
+    return <Navigate to={`/auth-page?hashingcode=${import.meta.env.VITE_HASH}`} replace />;
   }
 
+  // If authenticated, render the children components
   return (
     <Suspense fallback={<Loader />}>
       {children}

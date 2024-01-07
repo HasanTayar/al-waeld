@@ -9,7 +9,7 @@ const AdminSidebar = () => {
 
   useEffect(() => {
     // Set admin name based on the email or other logic
-    if (userData?.email.charAt(0) === 'h') {
+    if (userData?.user.email.charAt(0) === 'h') {
       setAdminName('hasan');
     } else {
       // Set default name or perform other checks

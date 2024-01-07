@@ -20,9 +20,9 @@ const AppRoutes = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedUserData = localStorage.getItem('admin');
-    if (storedUserData) {
-      const userData = JSON.parse(storedUserData);
+    const userDataFromStorage = localStorage.getItem('admin');
+    if (userDataFromStorage) {
+      const userData = JSON.parse(userDataFromStorage) ;
       dispatch(login(userData));
     }
   }, [dispatch]);
