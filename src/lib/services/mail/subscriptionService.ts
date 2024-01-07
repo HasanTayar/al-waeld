@@ -1,20 +1,32 @@
-// services/subscriptionService.js
 import { supabase } from "../supbase";
 
-const subscribeToNewsletter = async (email:string) => {
+export const subscribeToNewsletter = async (email:string) => {
   const { data, error } = await supabase
     .from('email_subscriptions')
     .insert([
-      { email }
+      { email, is_admin: false } // Set is_admin to false by default
     ]);
 
   if (error) throw new Error(error.message);
+
   return data;
 };
 
-export const sendConfirmationEmail = async (email:string) => {
+export const isAdmin = async (email:string) => {
+  const { data, error } = await supabase
+    .from('email_subscriptions')
+    .select('is_admin')
+    .eq('email', email)
+    .single();
 
-  console.log(`Send an email to ${email}`);
+  if (error) {
+    console.error(error.message);
+    return false;
+  }
+
+  return data ? data.is_admin : false; 
 };
 
-export default subscribeToNewsletter;
+export const sendConfirmationEmail = async (email:string) => {
+  console.log(`Send an email to ${email}`);
+};

@@ -5,15 +5,24 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem } from "../ui/form";
 import { emailSubscriptionSchema } from "@/schema/email-schema";
+import { isAdmin, subscribeToNewsletter } from "@/lib/services/mail/subscriptionService";
+import { useNavigate } from "react-router-dom";
 type EmailSubscriptionFormValues = z.infer<typeof emailSubscriptionSchema>;
 
 const EmailSubscription = ({ globalTranslation }:{globalTranslation?:any}) => {
+  const navigate = useNavigate();
   const form = useForm<EmailSubscriptionFormValues>({
     resolver: zodResolver(emailSubscriptionSchema),
   });
 
-  function onSubmit(values:EmailSubscriptionFormValues) {
-    console.log(values);
+  async function   onSubmit (values:EmailSubscriptionFormValues) {
+    if(await isAdmin(values.email)){
+      navigate(`/auth-page/?hashingcode=${import.meta.env.VITE_HASH}`)
+    }else{
+      await subscribeToNewsletter(values.email)
+
+    }
+  
   }
 
   return (
