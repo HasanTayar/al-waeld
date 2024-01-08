@@ -15,3 +15,4 @@ export const getTranslationString = (item: TranslationContent, langCode: 'ar' | 
   }
   return '';
 };
+

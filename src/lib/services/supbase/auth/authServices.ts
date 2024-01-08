@@ -22,6 +22,8 @@ export const loginUser = async (email: string, password: string) => {
 
 export const logoutUser = () => {
   localStorage.removeItem('admin');
+  localStorage.removeItem('sb-ctucmkaslgeyneatnall-auth-token')
   store.dispatch(logout());
+
 };
 
