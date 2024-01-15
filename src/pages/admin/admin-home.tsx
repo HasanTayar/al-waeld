@@ -1,10 +1,10 @@
+import CardsDetails from "@/components/admin/home/cards-details";
 
 const AdminHome = () => {
   return (
     <div className="flex min-h-screen">
       <div className="flex-grow">
-        adminhome
-        {/* Your main content here */}
+        <CardsDetails/>
       </div>
     </div>
   );
