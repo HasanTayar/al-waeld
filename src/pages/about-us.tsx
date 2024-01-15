@@ -1,11 +1,7 @@
 import React from "react";
 import { useTranslationsForPage } from "@/lib/query/hooks-query";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Autoplay,
-  Pagination,
-  EffectCoverflow,
-} from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
@@ -18,11 +14,13 @@ const AboutUs = () => {
 
   if (aboutError) {
     console.error(aboutError);
-    return <div className="text-center text-red-600">Failed to load content</div>;
+    return (
+      <div className="text-center text-red-600">Failed to load content</div>
+    );
   }
 
   if (!data) {
-    return <div className="text-center">{<Loader/>}</div>;
+    return <div className="text-center">{<Loader />}</div>;
   }
 
   return (
@@ -31,12 +29,10 @@ const AboutUs = () => {
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
           {data?.about.title}
         </h1>
-        <p className="text-md md:text-lg mb-8">
-          {data?.about.description}
-        </p>
+        <p className="text-md md:text-lg mb-8">{data?.about.description}</p>
       </div>
       <Swiper
-        modules={[Autoplay, Pagination, EffectCoverflow]}
+        modules={[Autoplay, Pagination]}
         effect="coverflow"
         grabCursor={true}
         centeredSlides={true}
@@ -59,29 +55,35 @@ const AboutUs = () => {
           // when window width is >= 320px
           320: {
             slidesPerView: 1,
-            spaceBetween: 20
+            spaceBetween: 20,
           },
           // when window width is >= 640px
           640: {
             slidesPerView: 2,
-            spaceBetween: 30
+            spaceBetween: 30,
           },
           // when window width is >= 1024px
           1024: {
             slidesPerView: 3,
-            spaceBetween: 40
+            spaceBetween: 40,
           },
         }}
       >
-        {data?.about.slides.map((imageUrl: string | undefined, index: React.Key | null | undefined) => (
-          <SwiperSlide key={index}>
-            <img
-              src={imageUrl}
-              alt={`Slide ${index}`}
-              className="w-full h-auto object-cover rounded-lg shadow-lg"
-            />
-          </SwiperSlide>
-        ))}
+        {data?.about.slides.map(
+          (
+            imageUrl: string | undefined,
+            index: React.Key | null | undefined
+          ) => (
+            <SwiperSlide key={index}>
+              <img
+                src={imageUrl}
+                alt={`Slide ${index}`}
+                className="w-full h-auto object-cover rounded-lg shadow-lg"
+                style={{ height: "250px" }}
+              />
+            </SwiperSlide>
+          )
+        )}
       </Swiper>
     </div>
   );

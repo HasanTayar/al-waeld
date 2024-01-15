@@ -2,7 +2,6 @@ import { Suspense, lazy, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layout/main-layout";
 import Loader from "./components/common/loader";
-import Courses from "./pages/courses";
 import AuthPage from "./pages/auth/auth-page";
 import PrivateRoute from "./components/protection/private-route";
 import AdminHome from "./pages/admin/admin-home";
@@ -10,6 +9,7 @@ import AdminLayout from "./layout/admin-layout";
 import AdminRoute from "./components/protection/admin-route";
 import { useDispatch } from "react-redux";
 import { login } from "./store/adminSlice";
+import CoursesPage from "./pages/courses";
 // import EmailTemplateEditor from './components/admin/email-editor';
 
 const Home = lazy(() => import("./pages/home"));
@@ -44,7 +44,7 @@ const AppRoutes = () => {
           element={
             <MainLayout>
               <Suspense fallback={<Loader />}>
-                <Courses />
+                <CoursesPage />
               </Suspense>
             </MainLayout>
           }
