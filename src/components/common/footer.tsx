@@ -11,7 +11,7 @@ import {
 } from "@/lib/query/hooks-query";
 import Loader from "./loader";
 import logo from "/assets/headLogo.png";
-import EmailSubscription from "./email-subscription";
+import QPM from "/assets/poweredByQPM.png";
 
 const Footer = () => {
   const {
@@ -42,20 +42,20 @@ const Footer = () => {
 
   return (
     <footer className="bg-slate-300 text-gray-700" dir="rtl">
-      <div className="container mx-auto px-4 py-16 flex flex-col items-center space-y-8 rtl lg:flex-row lg:space-x-8 lg:space-y-0">
+      <div className="container mx-auto px-4 py-16 flex flex-col items-center space-y-8 md:space-y-0 md:flex-row md:justify-around">
         {/* Logo Section */}
-        <div className="lg:order-1">
+        <div>
           <a href="/">
-            <img src={logo} alt="logo" className="w-32 h-32 lg:w-40 lg:h-40" />
+            <img src={logo} alt="logo" className="w-32 h-32 md:w-40 md:h-40" />
           </a>
         </div>
 
         {/* Visit Us Section */}
-        <div className="flex flex-col space-y-4 lg:order-2 pr-10">
-          <h2 className="text-2xl lg:text-3xl font-semibold">
+        <div className="flex flex-col space-y-8">
+          <h2 className="text-2xl font-semibold">
             {footerTranslation?.come_vist}
           </h2>
-          <div className="space-y-2">
+          <div className="space-y-8">
             <a
               href={contact?.address}
               target="_blank"
@@ -74,17 +74,17 @@ const Footer = () => {
             </a>
             <a
               href={`tel:${contact?.phone_number}`}
-              className="flex items-center space-x-2"
+              className="flex items-center space-x-2 "
             >
-              <PhoneCall className="w-6 h-6" />
+              <PhoneCall className="w-6 h-6 " />
               <span>{contact?.phone_number}</span>
             </a>
           </div>
         </div>
 
         {/* Contact Section */}
-        <div className="flex flex-col space-y-4 items-center lg:items-end lg:order-4">
-          <h2 className="text-2xl lg:text-3xl font-semibold">
+        <div className="flex flex-col space-y-4">
+          <h2 className="text-2xl font-semibold">
             {footerTranslation?.contact}
           </h2>
           <div className="flex space-x-4">
@@ -94,15 +94,15 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="hover:text-secondary transition-colors"
             >
-              <Facebook className="w-6 h-6 lg:w-8 lg:h-8" />
+              <Facebook className="w-6 h-6 md:w-8 md:h-8" />
             </a>
             <a
               href={contact?.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-secondary transition-colors"
+              className="hover:text-secondary pr-2 transition-colors"
             >
-              <Instagram className="w-6 h-6 lg:w-8 lg:h-8" />
+              <Instagram className="w-6 h-6 md:w-8 md:h-8" />
             </a>
             {contact?.whatsapp && (
               <a
@@ -111,19 +111,20 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:text-secondary transition-colors"
               >
-                <div className="w-6 h-6 lg:w-8 lg:h-8">
+                <div className="w-6 h-6 md:w-8 md:h-8">
                   <img src="/assets/whatsapp.svg" alt="whatsapp" />
                 </div>
               </a>
             )}
           </div>
         </div>
-
-        {/* Email Subscription Section */}
-        <EmailSubscription globalTranslation={globalTranslation} />
       </div>
-      <div className="text-center py-4 text-white">
-        &copy; {new Date().getFullYear()} Your Website. All rights reserved.
+      <div className="flex justify-center py-4">
+        <img
+          src={QPM}
+          alt="QPM Company"
+          className="rounded-full w-30 h-20 transform transition duration-300 hover:-translate-y-1"
+        />
       </div>
     </footer>
   );
