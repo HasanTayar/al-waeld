@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { login } from "./store/adminSlice";
 import CoursesPage from "./pages/courses";
 // import EmailTemplateEditor from './components/admin/email-editor';
+import { HelmetProvider } from "react-helmet-async";
+import OurTreatments from "./pages/our-treatments";
 
 const Home = lazy(() => import("./pages/home"));
 
@@ -20,79 +22,91 @@ const AppRoutes = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const userDataFromStorage = localStorage.getItem('admin');
+    const userDataFromStorage = localStorage.getItem("admin");
     if (userDataFromStorage) {
-      const userData = JSON.parse(userDataFromStorage) ;
+      const userData = JSON.parse(userDataFromStorage);
       dispatch(login(userData));
     }
   }, [dispatch]);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <MainLayout>
-              <Suspense fallback={<Loader />}>
-                <Home />
-              </Suspense>
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/courses"
-          element={
-            <MainLayout>
-              <Suspense fallback={<Loader />}>
-                <CoursesPage />
-              </Suspense>
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/about-us"
-          element={
-            <MainLayout>
-              <Suspense fallback={<Loader />}>
-                <AboutUs />
-              </Suspense>
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/auth-page"
-          element={
-            <PrivateRoute>
-              <Suspense fallback={<Loader />}>
-                <AuthPage />
-              </Suspense>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/admin-dashboard"
-          element={
-            <AdminLayout>
-              <AdminRoute>
-                <Suspense fallback={<Loader />}>
-                  <AdminHome />
-                </Suspense>
-              </AdminRoute>
-            </AdminLayout>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <Suspense fallback={<Loader />}>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
               <MainLayout>
-                <NotFound />
+                <Suspense fallback={<Loader />}>
+                  <Home />
+                </Suspense>
               </MainLayout>
-            </Suspense>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+            }
+          />
+          <Route
+            path="/courses"
+            element={
+              <MainLayout>
+                <Suspense fallback={<Loader />}>
+                  <CoursesPage />
+                </Suspense>
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/about-us"
+            element={
+              <MainLayout>
+                <Suspense fallback={<Loader />}>
+                  <AboutUs />
+                </Suspense>
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/our-treatments"
+            element={
+              <MainLayout>
+                <Suspense fallback={<Loader />}>
+                  <OurTreatments />
+                </Suspense>
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/auth-page"
+            element={
+              <PrivateRoute>
+                <Suspense fallback={<Loader />}>
+                  <AuthPage />
+                </Suspense>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin-dashboard"
+            element={
+              <AdminLayout>
+                <AdminRoute>
+                  <Suspense fallback={<Loader />}>
+                    <AdminHome />
+                  </Suspense>
+                </AdminRoute>
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Loader />}>
+                <MainLayout>
+                  <NotFound />
+                </MainLayout>
+              </Suspense>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 };
 

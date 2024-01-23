@@ -40,14 +40,15 @@ const LangModal = () => {
   useEffect(() => {
     if (globalTranslations?.title) {
       document.title = globalTranslations.title as unknown as string;
-      document.dir = selectedLangCode === "ar" ? "rtl" : "ltr";
+      document.dir = selectedLangCode === "ar" ? "rtl" : "rtl";
+      document.dir = selectedLangCode === "he" ? "rtl" : "rtl";
     }
   }, [globalTranslations?.title, selectedLangCode]);
 
   const handleLanguageChange = (newLangCode: "ar" | "he") => {
     setSelectedLangCode(newLangCode);
     dispatch(setLanguage(newLangCode));
-    document.dir = "rtl";
+    document.dir = newLangCode === "ar" ? "rtl" : "rtl";
   };
 
   const handleSubmit = () => {

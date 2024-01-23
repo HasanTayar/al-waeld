@@ -9,9 +9,9 @@ import SEO from "@/components/seo";
 import { useUserLanguage } from "@/hooks/use-userlang";
 import { useTranslationsForPage } from "@/lib/query/hooks-query";
 
-const CoursesPage = () => {
+const OurTreatments = () => {
   const { language } = useUserLanguage();
-  const { data, error: aboutError } = useTranslationsForPage("courses");
+  const { data, error: aboutError } = useTranslationsForPage("treatments");
 
   if (aboutError) {
     console.error(aboutError);
@@ -27,7 +27,7 @@ const CoursesPage = () => {
   return (
     <>
       <SEO
-        title={language === "ar" ? "دورات " : "קורסים"}
+        title={language === "ar" ? "علاجاتنا " : "טיפולים שלנו"}
         description={
           language === "ar"
             ? "هي عائلة للجميع تقع في مزرعة الوليد مخصصة لتعزيز وتنمية الوعي لدى الأطفال والشباب بشكل خاص والمجتمع بشكل عام يقدم في الجمعية خدمات ركوب الخيل العلاجية والعلاجات الطبية البرية، تعتني في الحيوانات الضالة والحفاظ على جودة البيئة"
@@ -43,7 +43,7 @@ const CoursesPage = () => {
       <div className="bg-gradient-to-b from-slate-300 to-gray-200 p-4">
         <div className="flex justify-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mx-auto">
-            {data.courses.map((course: any, index: number) => (
+            {data.treatments.map((course: any, index: number) => (
               <Card
                 key={index}
                 className="flex flex-col items-center justify-between shadow-lg rounded-lg text-right"
@@ -68,4 +68,4 @@ const CoursesPage = () => {
     </>
   );
 };
-export default CoursesPage;
+export default OurTreatments;
