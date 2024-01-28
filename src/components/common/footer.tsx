@@ -11,7 +11,6 @@ import {
 } from "@/lib/query/hooks-query";
 import Loader from "./loader";
 import logo from "/assets/headLogo.png";
-import QPM from "/assets/poweredByQPM.png";
 
 const Footer = () => {
   const {
@@ -120,11 +119,13 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex justify-center py-4">
-        <img
-          src={QPM}
-          alt="QPM Company"
-          className="rounded-full w-30 h-20 transform transition duration-300 hover:-translate-y-1"
-        />
+        <a href="https://quantumpinnaclematrix.tech/" target="_blank">
+          <img
+            src="/assets/poweredByQPM.svg"
+            alt="QPM Company"
+            className="rounded-full w-30 h-20 transform transition duration-300 hover:-translate-y-1"
+          />
+        </a>
       </div>
     </footer>
   );
