@@ -31,7 +31,9 @@ const AdminSidebar = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const toggleSheet = () => setIsSheetOpen(!isSheetOpen);
 
-  const adminDashboardPath = `/admin-dashboard/?hashingcode=${import.meta.env.VITE_HASH}`;
+  const adminDashboardPath = `/admin-dashboard/?hashingcode=${
+    import.meta.env.VITE_HASH
+  }`;
   useEffect(() => {
     if (userData?.email.charAt(0) === "h") {
       setAdminName(`${import.meta.env.VITE_DEVELOPER_NAME}`);
@@ -44,8 +46,11 @@ const AdminSidebar = () => {
     }
   }, [userData]);
 
-  const handleAdminRouting = (link:string) => {
-    const targetPath = link !== adminDashboardPath ? `${adminDashboardPath}/${link}` : adminDashboardPath;
+  const handleAdminRouting = (link: string) => {
+    const targetPath =
+      link !== adminDashboardPath
+        ? `${adminDashboardPath}/${link}`
+        : adminDashboardPath;
     setIsSheetOpen(false);
     window.scrollTo(0, 0);
     navigate(targetPath);
@@ -57,23 +62,26 @@ const AdminSidebar = () => {
     { name: "Settings", path: "settings", icon: <SettingsIcon /> },
     // Add more links as necessary
   ];
-  const handleLogout = ()=>{
-    logoutUser()
-    navigate('/')
-  }
+  const handleLogout = () => {
+    logoutUser();
+    navigate("/");
+  };
   return (
-    <>
-    <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-      <SheetTrigger className="m-4">
-        <Button variant="outline" size="icon" className="bg-slate-300 hover:bg-slate-200" onClick={toggleSheet}>
-          <Menu className="h-6 w-6 text-black" />
-        </Button>
-      </SheetTrigger>
+    <div className="sticky top-0">
+      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+        <SheetTrigger className="m-4">
+          <Button
+            variant="outline"
+            size="icon"
+            className="bg-slate-300 hover:bg-slate-200"
+            onClick={toggleSheet}
+          >
+            <Menu className="h-6 w-6 text-black" />
+          </Button>
+        </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle className="text-center">
-              ממשק ניהול אשמין
-            </SheetTitle>
+            <SheetTitle className="text-center">ממשק ניהול אשמין</SheetTitle>
             <SheetDescription className="flex flex-col items-start">
               <p className="text-lg text-black flex items-center">
                 {roleClass === "developer" ? (
@@ -89,21 +97,29 @@ const AdminSidebar = () => {
           <div className="pt-10">
             {adminLinks.map((link, index) => (
               <div className="pt-2" key={index}>
-                <Button variant='ghost' className="w-full flex justify-start" onClick={() => handleAdminRouting(link.path)}>
+                <Button
+                  variant="ghost"
+                  className="w-full flex justify-start"
+                  onClick={() => handleAdminRouting(link.path)}
+                >
                   <span>{link.icon}</span>
                   <span className="pr-10 text-bold text-lg">{link.name}</span>
                 </Button>
               </div>
             ))}
           </div>
-        <SheetFooter>
-          <Button variant='ghost' className="w-full" onClick={()=>handleLogout()}>
+          <SheetFooter>
+            <Button
+              variant="ghost"
+              className="w-full"
+              onClick={() => handleLogout()}
+            >
               יצאה
-          </Button>
-        </SheetFooter>
+            </Button>
+          </SheetFooter>
         </SheetContent>
       </Sheet>
-    </>
+    </div>
   );
 };
 

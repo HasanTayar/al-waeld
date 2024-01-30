@@ -1,11 +1,10 @@
-import CardsDetails from "@/components/admin/home/cards-details";
+import DisplayHomePage from "@/components/admin/display-home-page";
 
 const AdminHome = () => {
   return (
     <div className="flex min-h-screen">
-      <div className="flex-grow">
-        <CardsDetails/>
-      </div>
+      <div className="flex-grow"></div>
+      <DisplayHomePage />
     </div>
   );
 };
