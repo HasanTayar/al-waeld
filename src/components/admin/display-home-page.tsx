@@ -2,8 +2,14 @@ import Home from "@/pages/home";
 import LangTabs from "./common/lang-tabs";
 import { Edit2Icon } from "lucide-react";
 import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
 
 const DisplayHomePage = () => {
+  const navigate = useNavigate();
+
+  const handleEditRoute = () => {
+    navigate(`/edit/home_page?hashingcode=${import.meta.env.VITE_HASH}`);
+  };
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <header className="bg-white shadow">
@@ -13,6 +19,7 @@ const DisplayHomePage = () => {
             size="icon"
             variant="outline"
             className="text-gray-600 hover:text-gray-800"
+            onClick={handleEditRoute}
           >
             <Edit2Icon className="w-5 h-5" />
           </Button>

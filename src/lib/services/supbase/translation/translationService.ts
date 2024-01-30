@@ -3,7 +3,7 @@ import { supabase } from ".."; // Update the path according to your project stru
 import { processTranslationValue } from "./helper";
 import { encodeHtmlEntities } from "../../html-entity-encoder";
 
-export async function getTranslationsForPage(pageName: string): Promise<any> {
+export async function getTranslationsForPage(pageName?: string): Promise<any> {
   const { data: pageData, error: pageError } = await supabase
     .from("pages")
     .select("page_id")
@@ -29,7 +29,6 @@ export async function getTranslationsForPage(pageName: string): Promise<any> {
       translationsData.translations[key]
     );
   });
-
   return translations;
 }
 export async function updateTranslationsForPage(

@@ -13,6 +13,7 @@ import CoursesPage from "./pages/courses";
 // import EmailTemplateEditor from './components/admin/email-editor';
 import { HelmetProvider } from "react-helmet-async";
 import OurTreatments from "./pages/our-treatments";
+const EditPage = lazy(() => import("./components/admin/common/edit-page"));
 
 const Home = lazy(() => import("./pages/home"));
 
@@ -89,6 +90,18 @@ const AppRoutes = () => {
                 <AdminRoute>
                   <Suspense fallback={<Loader />}>
                     <AdminHome />
+                  </Suspense>
+                </AdminRoute>
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/edit/:pageName"
+            element={
+              <AdminLayout>
+                <AdminRoute>
+                  <Suspense fallback={<Loader />}>
+                    <EditPage />
                   </Suspense>
                 </AdminRoute>
               </AdminLayout>
